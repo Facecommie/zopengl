@@ -828,20 +828,11 @@ pub const STENCIL_BACK_VALUE_MASK = 0x8CA4;
 pub const STENCIL_BACK_WRITEMASK = 0x8CA5;
 pub var blendEquationSeparate: *const fn (modeRGB: Enum, modeAlpha: Enum) callconv(.c) void = undefined;
 pub var drawBuffers: *const fn (n: Sizei, bufs: [*c]const Enum) callconv(.c) void = undefined;
-pub var stencilOpSeparate: *const fn (
-    face: Enum,
-    sfail: Enum,
-    dpfail: Enum,
-    dppass: Enum,
-) callconv(.c) void = undefined;
+pub var stencilOpSeparate: *const fn (face: Enum, sfail: Enum, dpfail: Enum, dppass: Enum) callconv(.c) void = undefined;
 pub var stencilFuncSeparate: *const fn (face: Enum, func: Enum, ref: Int, mask: Uint) callconv(.c) void = undefined;
 pub var stencilMaskSeparate: *const fn (face: Enum, mask: Uint) callconv(.c) void = undefined;
 pub var attachShader: *const fn (program: Uint, shader: Uint) callconv(.c) void = undefined;
-pub var bindAttribLocation: *const fn (
-    program: Uint,
-    index: Uint,
-    name: [*c]const Char,
-) callconv(.c) void = undefined;
+pub var bindAttribLocation: *const fn (program: Uint, index: Uint, name: [*c]const Char) callconv(.c) void = undefined;
 pub var compileShader: *const fn (shader: Uint) callconv(.c) void = undefined;
 pub var createProgram: *const fn () callconv(.c) Uint = undefined;
 pub var createShader: *const fn (type: Enum) callconv(.c) Uint = undefined;
@@ -850,71 +841,26 @@ pub var deleteShader: *const fn (shader: Uint) callconv(.c) void = undefined;
 pub var detachShader: *const fn (program: Uint, shader: Uint) callconv(.c) void = undefined;
 pub var disableVertexAttribArray: *const fn (index: Uint) callconv(.c) void = undefined;
 pub var enableVertexAttribArray: *const fn (index: Uint) callconv(.c) void = undefined;
-pub var getActiveAttrib: *const fn (
-    program: Uint,
-    index: Uint,
-    bufSize: Sizei,
-    length: [*c]Sizei,
-    size: [*c]Int,
-    type: [*c]Enum,
-    name: [*c]Char,
-) callconv(.c) void = undefined;
-pub var getActiveUniform: *const fn (
-    program: Uint,
-    index: Uint,
-    bufSize: Sizei,
-    length: [*c]Sizei,
-    size: [*c]Int,
-    type: [*c]Enum,
-    name: [*c]Char,
-) callconv(.c) void = undefined;
-pub var getAttachedShaders: *const fn (
-    program: Uint,
-    maxCount: Sizei,
-    count: [*c]Sizei,
-    shaders: [*c]Uint,
-) callconv(.c) void = undefined;
+pub var getActiveAttrib: *const fn (program: Uint, index: Uint, bufSize: Sizei, length: [*c]Sizei, size: [*c]Int, type: [*c]Enum, name: [*c]Char) callconv(.c) void = undefined;
+pub var getActiveUniform: *const fn (program: Uint, index: Uint, bufSize: Sizei, length: [*c]Sizei, size: [*c]Int, type: [*c]Enum, name: [*c]Char) callconv(.c) void = undefined;
+pub var getAttachedShaders: *const fn (program: Uint, maxCount: Sizei, count: [*c]Sizei, shaders: [*c]Uint) callconv(.c) void = undefined;
 pub var getAttribLocation: *const fn (program: Uint, name: [*c]const Char) callconv(.c) Int = undefined;
 pub var getProgramiv: *const fn (program: Uint, pname: Enum, params: [*c]Int) callconv(.c) void = undefined;
-pub var getProgramInfoLog: *const fn (
-    program: Uint,
-    bufSize: Sizei,
-    length: [*c]Sizei,
-    infoLog: [*c]Char,
-) callconv(.c) void = undefined;
+pub var getProgramInfoLog: *const fn (program: Uint, bufSize: Sizei, length: [*c]Sizei, infoLog: [*c]Char) callconv(.c) void = undefined;
 pub var getShaderiv: *const fn (shader: Uint, pname: Enum, params: [*c]Int) callconv(.c) void = undefined;
-pub var getShaderInfoLog: *const fn (
-    shader: Uint,
-    bufSize: Sizei,
-    length: [*c]Sizei,
-    infoLog: [*c]Char,
-) callconv(.c) void = undefined;
-pub var getShaderSource: *const fn (
-    shader: Uint,
-    bufSize: Sizei,
-    length: [*c]Sizei,
-    source: [*c]Char,
-) callconv(.c) void = undefined;
+pub var getShaderInfoLog: *const fn (shader: Uint, bufSize: Sizei, length: [*c]Sizei, infoLog: [*c]Char) callconv(.c) void = undefined;
+pub var getShaderSource: *const fn (shader: Uint, bufSize: Sizei, length: [*c]Sizei, source: [*c]Char) callconv(.c) void = undefined;
 pub var getUniformLocation: *const fn (program: Uint, name: [*c]const Char) callconv(.c) Int = undefined;
 pub var getUniformfv: *const fn (program: Uint, location: Int, params: [*c]Float) callconv(.c) void = undefined;
 pub var getUniformiv: *const fn (program: Uint, location: Int, params: [*c]Int) callconv(.c) void = undefined;
 pub var getVertexAttribdv: *const fn (index: Uint, pname: Enum, params: [*c]Double) callconv(.c) void = undefined;
 pub var getVertexAttribfv: *const fn (index: Uint, pname: Enum, params: [*c]Float) callconv(.c) void = undefined;
 pub var getVertexAttribiv: *const fn (index: Uint, pname: Enum, params: [*c]Int) callconv(.c) void = undefined;
-pub var getVertexAttribPointerv: *const fn (
-    index: Uint,
-    pname: Enum,
-    pointer: [*c]?*anyopaque,
-) callconv(.c) void = undefined;
+pub var getVertexAttribPointerv: *const fn (index: Uint, pname: Enum, pointer: [*c]?*anyopaque) callconv(.c) void = undefined;
 pub var isProgram: *const fn (program: Uint) callconv(.c) Boolean = undefined;
 pub var isShader: *const fn (shader: Uint) callconv(.c) Boolean = undefined;
 pub var linkProgram: *const fn (program: Uint) callconv(.c) void = undefined;
-pub var shaderSource: *const fn (
-    shader: Uint,
-    count: Sizei,
-    string: [*c]const [*c]const Char,
-    length: [*c]const Int,
-) callconv(.c) void = undefined;
+pub var shaderSource: *const fn (shader: Uint, count: Sizei, string: [*c]const [*c]const Char, length: [*c]const Int) callconv(.c) void = undefined;
 pub var useProgram: *const fn (program: Uint) callconv(.c) void = undefined;
 pub var uniform1f: *const fn (location: Int, v0: Float) callconv(.c) void = undefined;
 pub var uniform2f: *const fn (location: Int, v0: Float, v1: Float) callconv(.c) void = undefined;
